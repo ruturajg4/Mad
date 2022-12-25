@@ -106,6 +106,43 @@ public class LoginDemo extends JApplet implements ActionListener {
     }
 }
 
+//Unit 3 1f
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+public class FillRectDemo extends JApplet implements ActionListener {
+    JButton red,green,blue;Color c;
+    public void init() {
+        Container cp=getContentPane();
+        cp.setLayout(new FlowLayout());
+        red=new JButton("RED");
+        green=new JButton("GREEN");
+        blue=new JButton("BLUE");
+        cp.add(red);cp.add(green);cp.add(blue);
+        red.addActionListener(this);
+        green.addActionListener(this);
+        blue.addActionListener(this);
+    }
+    public void paint(Graphics g){
+        g.setColor(c);
+        g.fillRect(10,150,230,130);
+    }
+    public void actionPerformed(ActionEvent e) {
+        String str=e.getActionCommand();
+        if (str.equals("RED")){
+            c=Color.red;repaint();
+        }
+        if (str.equals("GREEN")){
+            c=Color.green;repaint();
+        }
+        if (str.equals("BLUE")){
+            c=Color.blue;repaint();
+        }
+    }
+}
+
+
 //Unit 3 2a
 import java.applet.Applet;
 import java.awt.*;
