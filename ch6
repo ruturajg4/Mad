@@ -1,0 +1,31 @@
+//unit 6 1
+//web.xml
+<web-app>
+	<servlet>	
+		<servlet-name>LogicalName</servlet-name>
+		<servlet-class>Msbte</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LogicalName</servlet-name>
+		<url-pattern>/win22</url-pattern>
+	</servlet-mapping>
+
+</web-app>
+
+//Msbte.java
+import javax.servlet.*;
+import javax.servlet.http.*;
+import java.io.*;
+
+public class Msbte extends HttpServlet
+{
+	public void service(HttpServletRequest req,HttpServletResponse res)
+		throws ServletException,IOException
+	{
+		PrintWriter pw=res.getWriter();
+		pw.println("Hello MSBTE");
+	}
+}
+
+//index.html
+ hello Msbte 
