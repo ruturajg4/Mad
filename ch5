@@ -1,0 +1,87 @@
+//Unit 5 1
+import java.sql.*;
+public class SQLMyWorld {
+    public static void main(String[] args)throws Exception {
+        Class.forName("com.mysql.jdbc.Driver");
+        System.out.println("Drivers are loaded successfully");
+        Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/sam","root","root");
+        System.out.println("Connection is established successfully");
+
+        Statement s1=con.createStatement();
+        //s1.executeUpdate("create table MyWorld(ID int(1),Name varchar(30))");
+        System.out.println("Table is created");
+
+        Statement s2=con.createStatement();
+        //s2.executeUpdate("insert into MyWorld values(1,'Chota Bheem')");
+        //s2.executeUpdate("insert into MyWorld values(2,'Jaggu')");
+        //s2.executeUpdate("insert into MyWorld values(3,'Chutaki')");
+        //s2.executeUpdate("insert into MyWorld values(4,'Kalia')");
+
+        Statement s3=con.createStatement();
+        //s3.executeUpdate("update MyWorld set Name='Jerry' where Name='Jaggu'");
+
+        Statement s4=con.createStatement();
+        s4.executeUpdate("delete from MyWorld where Name='Kalia'");
+
+        Statement s5=con.createStatement();
+        ResultSet rs=s5.executeQuery("select * from MyWorld");
+        while (rs.next()){
+            System.out.println(rs.getInt(1)+" "+rs.getString(2));
+        }
+    }
+}
+
+//Unit 5 2
+import java.io.*;
+import java.sql.*;
+public class SQLIndia {
+    public static void main(String[] args) throws Exception {
+        Class.forName("com.mysql.jdbc.Driver");
+        System.out.println("Drivers are loaded successfully");
+        Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/sam","root","root");
+        System.out.println("Connection is established successfully");
+
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+
+        Statement s1=con.createStatement();
+        s1.executeUpdate("create table India(ID int(2),State varchar(30),Capital varchar(30))");
+        System.out.println("Table is created");
+
+        Statement s2=con.createStatement();
+        s2.executeUpdate("insert into India values(01,'Maharashtra','Mumbai')");
+        s2.executeUpdate("insert into India values(02,'Uttarpradesh','Lucknow')");
+
+        PreparedStatement p1=con.prepareStatement("insert into India values(?,?,?)");
+        System.out.println("Enter ID");
+        int id=Integer.parseInt(br.readLine());
+        p1.setInt(1,id);
+        System.out.println("Enter State");
+        String state= br.readLine();
+        p1.setString(2,state);
+        System.out.println("Enter Capital");
+        String capital= br.readLine();
+        p1.setString(3,capital);
+        p1.executeUpdate();
+
+        PreparedStatement p2=con.prepareStatement("delete from India where State=?");
+        System.out.println("Enter State to delete");
+        String delete= br.readLine();
+        p2.setString(1,delete);
+        p2.executeUpdate();
+
+        PreparedStatement p3=con.prepareStatement("update India set Capital=? where Capital=?");
+        System.out.println("Enter Capital to change");
+        String old=br.readLine();
+        p3.setString(2,old);
+        System.out.println("Enter new Capital");
+        String change=br.readLine();
+        p3.setString(1,change);
+        p3.executeUpdate();
+
+        Statement s3=con.createStatement();
+        ResultSet rs=s3.executeQuery("select * from India");
+        while (rs.next()){
+            System.out.println(rs.getInt(1)+" "+rs.getString(2)+" "+rs.getString(3));
+        }
+    }
+}
