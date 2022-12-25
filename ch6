@@ -1,4 +1,11 @@
 //unit 6 1
+//MSBTE
+
+//WEB-INF
+//index.html
+ hello Msbte 
+
+//classes
 //web.xml
 <web-app>
 	<servlet>	
@@ -11,6 +18,7 @@
 	</servlet-mapping>
 
 </web-app>
+
 
 //Msbte.java
 import javax.servlet.*;
@@ -26,6 +34,3 @@ public class Msbte extends HttpServlet
 		pw.println("Hello MSBTE");
 	}
 }
-
-//index.html
- hello Msbte 
