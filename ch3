@@ -105,6 +105,44 @@ public class LoginDemo extends JApplet implements ActionListener {
         }
     }
 }
+
+// Unit 3 1d
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent; 
+import java.awt.event.ActionListener;
+public class LoginFormDemo extends JApplet implements ActionListener 
+{
+	JPasswordField jp;JLabel 13;
+	public void init() 
+	{
+	Container ep getContentPane();
+	cp.setLayout(new FlowLayout());
+	JLabel l1=new JLabel("Enter Username");
+	JLabel l2-new JLabel("Enter Password"); JTextField t1=new JTextField(30);
+	jp-new JPasswordField(30);
+	JButton b new JButton("Login");
+	l3-new JLabel("");
+	cp.add(l1);cp.add(l1);cp.add(l2);cp.add(jp);cp.add(b):cp.add(l3); 
+	b.addActionListener(this);
+	public void actionPerformed(ActionEvent e) 
+	{ 
+		String str-e.getActionCommand();
+		String pass new String(jp.getPassword());
+		if (str.equals("Login"))
+		{
+			if (pass.length()<6)
+			{ 
+				l3.setText("Failed");
+			} 
+			else 
+			{
+				l3.setText("WELCOME");
+			}
+		}
+	}
+}
+
 //unit 3 1e
 import javax.swing.*;
 import java.awt.*;
