@@ -1,0 +1,72 @@
+# xml file
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DOWNLOAD FILE"
+        android:onClick="disp"/>
+
+
+</LinearLayout>
+
+#java file
+package com.example.a132;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.app.ProgressDialog;
+import android.os.Bundle;
+import android.view.View;
+
+public class MainActivity extends AppCompatActivity {
+    ProgressDialog progressDialog;
+    private int progressStatus = 0;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        progressDialog = new ProgressDialog(this);
+    }
+    public void disp(View v){
+        showProgressDialogWithTitle("File Downloading ...");
+    }
+    private void showProgressDialogWithTitle(String title) {
+        progressDialog.setTitle(title);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setCancelable(false);
+        progressDialog.setMax(100);
+        progressDialog.show();
+
+        new Thread(new Runnable() {
+            public void run() {
+                while (progressStatus < 100) {
+                    try{
+
+                        Thread.sleep(200);
+                        progressStatus += 5;
+                    } catch (InterruptedException e){
+                        e.printStackTrace();
+                    }
+                    progressDialog.setProgress(progressStatus);
+
+                }
+
+                hideProgressDialogWithTitle();
+            }
+        }).start();
+
+    }
+    private void hideProgressDialogWithTitle() {
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.dismiss();
+            }
+}
+
