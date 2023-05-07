@@ -1,0 +1,91 @@
+# xml file
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/s"
+        android:layout_gravity="center">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/l1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AM/PM"/>
+
+            <TimePicker
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tp1"
+                android:timePickerMode="spinner"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="24 HOURS"/>
+
+            <TimePicker
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tp2"
+                android:timePickerMode="spinner"/>
+
+            <TimePicker
+                android:id="@+id/tp3"
+                android:layout_width="match_parent"
+                android:layout_height="344dp"
+                android:timePickerMode="clock" />
+
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/b"
+                android:text="show Date"
+                android:onClick="show"/>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
+
+#java file
+package com.example.demo;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.DatePicker;
+import android.widget.TextView;
+import android.widget.TimePicker;
+
+public class MainActivity extends AppCompatActivity {
+
+    TextView t;
+    TimePicker tp1, tp2, tp3;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        tp1 = (TimePicker) findViewById(R.id.tp1);
+        tp2 = (TimePicker) findViewById(R.id.tp2);
+        tp3 = (TimePicker) findViewById(R.id.tp3);
+
+        tp2.setIs24HourView(true);
+    }
+}
