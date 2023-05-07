@@ -1,0 +1,82 @@
+# xml file
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/c1"
+        android:text="Android"/>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/c2"
+        android:text="Windows"/>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/c3"
+        android:text="Linux"/>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/c4"
+        android:text="MacOS"/>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/c5"
+        android:text="ChromeOS"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/b"
+        android:onClick="show"
+        android:text="Display"/>
+</LinearLayout>
+
+#java file
+package com.example.a111;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.CheckBox;
+import android.widget.Checkable;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+    CheckBox chkAndroid,chkWindows,chkMacOS,chkLinux,chkChromeOS;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+    public void show(View v){
+        chkAndroid=(CheckBox) findViewById(R.id.c1);
+        chkWindows=(CheckBox) findViewById(R.id.c2);
+        chkMacOS=(CheckBox) findViewById(R.id.c3);
+        chkLinux=(CheckBox) findViewById(R.id.c4);
+        chkChromeOS=(CheckBox) findViewById(R.id.c5);
+
+        StringBuilder status=new StringBuilder();
+        status=status.append("Windows = ").append(chkWindows.isChecked()).append("\n");
+        status=status.append("Android = ").append(chkAndroid.isChecked()).append("\n");
+        status=status.append("MacOS = ").append(chkMacOS.isChecked()).append("\n");
+        status=status.append("Linux = ").append(chkLinux.isChecked()).append("\n");
+        status=status.append("ChromeOS = ").append(chkChromeOS.isChecked());
+
+        Toast.makeText(getApplicationContext(),status,Toast.LENGTH_LONG).show();
+    }
+}
