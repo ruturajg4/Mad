@@ -1,0 +1,57 @@
+# xml file
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+   <Button
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:onClick="ENABLE"
+       android:text="ENABLE"
+       />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="DISABLE"
+        android:text="DISABLE"
+        />
+
+
+</LinearLayout>
+
+#java file
+package com.example.wifi;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.net.wifi.WifiManager;
+import android.os.Bundle;
+import android.view.View;
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+    public void en(View v)
+    {
+        WifiManager wifi=(WifiManager) getSystemService(getApplicationContext().WIFI_SERVICE);
+        wifi.setWifiEnabled(true);
+    }
+    public void dis(View v)
+    {
+        WifiManager wifi=(WifiManager) getSystemService(getApplication().WIFI_SERVICE);
+        wifi.setWifiEnabled(false);
+    }
+}
+
+#manifest file
+
+<uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
