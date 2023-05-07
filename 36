@@ -1,0 +1,88 @@
+# xml file
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Username" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="Password" />
+
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login" />
+
+</LinearLayout>
+
+#java file
+
+package com.example.a28;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+
+    private EditText usernameEditText;
+    private EditText passwordEditText;
+    private Button loginButton;
+    private int loginAttempts;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        usernameEditText = findViewById(R.id.username);
+        passwordEditText = findViewById(R.id.password);
+        loginButton = findViewById(R.id.login_button);
+        loginAttempts = 0;
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String username = usernameEditText.getText().toString();
+                String password = passwordEditText.getText().toString();
+
+                if (username.length() < 6 || password.length() < 6) {
+                    Toast.makeText(MainActivity.this, "Username and password must be at least 6 characters long", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (username.isEmpty() || password.isEmpty()) {
+                    Toast.makeText(MainActivity.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (loginAttempts >= 3) {
+                    Toast.makeText(MainActivity.this, "You have reached the maximum number of login attempts", Toast.LENGTH_SHORT).show();
+                    loginButton.setEnabled(false);
+                    return;
+                }
+
+                if (username.equals("ruturaj123") && password.equals("@123456")) {
+                    Toast.makeText(MainActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
+                    loginAttempts++;
+                }
+            }
+        });
+    }
+}
