@@ -1,0 +1,97 @@
+# xml file
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" 
+    xmlns:tools="http://schemas.android.com/tools" 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"> 
+    
+    <EditText 
+        android:id="@+id/editTextDate"
+        android:layout_width="197dp" 
+        android:layout_height="wrap_content" 
+        android:layout_x="21dp" 
+        android:layout_y="164dp" 
+        android:ems="10" 
+        android:inputType="date" /> 
+    
+    <Button 
+        android:id="@+id/button" 
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content" 
+        android:layout_x="234dp" 
+        android:layout_y="161dp" 
+        android:onClick="date" 
+        android:text="Select Date" /> 
+    
+    <EditText 
+        android:id="@+id/editTextTime" 
+        android:layout_width="191dp" 
+        android:layout_height="wrap_content" 
+        android:layout_x="21dp" 
+        android:layout_y="255dp" 
+        android:ems="10" 
+        android:inputType="time" /> 
+    
+    <Button 
+        android:id="@+id/button2" 
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content" 
+        android:layout_x="239dp" 
+        android:layout_y="250dp" 
+        android:onClick="time" 
+        android:text="Select Time" />
+</AbsoluteLayout>
+
+#java file
+
+package com.example.a1622;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.TimePicker;
+import java.text.BreakIterator;
+import java.util.Calendar;
+
+public class MainActivity extends AppCompatActivity {
+    EditText e1,t1;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        e1=(EditText) findViewById(R.id.editTextDate);
+        t1=(EditText) findViewById(R.id.editTextTime);
+    }
+    public void date(View v) {
+        final Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        DatePickerDialog datePickerDialog = new DatePickerDialog( this, new DatePickerDialog.OnDateSetListener()
+        {
+            public void onDateSet(DatePicker datePicker, int year, int month, int day)
+            {
+                e1.setText(day + "/" + (month + 1) + "/" + year);
+            }
+            }, year, month, day); datePickerDialog.show();
+    }
+    public void time(View v) {
+
+        Calendar currentTime = Calendar.getInstance();
+        int hour = currentTime.get(Calendar.HOUR_OF_DAY);
+        int minute = currentTime.get(Calendar.MINUTE);
+        TimePickerDialog timePickerDialog = new TimePickerDialog( MainActivity.this, new TimePickerDialog.OnTimeSetListener()
+        {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                BreakIterator timeInput;t1.setText(String.format("%02d:%02d", hourOfDay, minute));
+            }
+            }, hour, minute, true); timePickerDialog.show();
+    }
+}
