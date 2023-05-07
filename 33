@@ -1,0 +1,183 @@
+# xml file
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="zoomin"
+        android:text="zoomin"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="zoomout"
+        android:text="Zoomout"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="clockwise"
+        android:text="clockwise"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="anticlockwise"
+        android:text="anticlockwise"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="fadein"
+        android:text="fadein"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="fadeout"
+        android:text="fadeout"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="move"
+        android:text="move"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/i"
+        android:src="@drawable/a"
+        android:scrollbarSize="5dp"/>
+</LinearLayout>
+
+#java file
+
+package com.example.a251;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.animation.Animator;
+import android.os.Bundle;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+
+public class MainActivity extends AppCompatActivity {
+ImageView i;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        i=(ImageView) findViewById(R.id.i);
+    }
+
+    public void zoomin(View v){
+         Animation as= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.zoomin);
+        i.startAnimation(as);
+    }
+    public void zoomout(View v){
+        Animation as= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.zoomout);
+        i.startAnimation(as);
+    }
+    public void clockwise(View v){
+        Animation as= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.clockwise);
+        i.startAnimation(as);
+    }
+    public void anticlockwise(View v){
+        Animation as= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.anticlockwise);
+        i.startAnimation(as);
+    }public void fadein(View v){
+        Animation as= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fadein);
+        i.startAnimation(as);
+    }public void fadeout(View v){
+        Animation as= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fadeout);
+        i.startAnimation(as);
+    }
+    public void move(View v){
+        Animation as= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.move);
+        i.startAnimation(as);
+    }
+
+
+}
+
+#xml file for methods 
+
+# Anticlockwise
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+<rotate xmlns:android="http://schemas.android.com/apk/res/android"
+android:fromDegrees="360"
+android:toDegrees="0"
+android:duration="1000"/>
+</set>
+
+# Clockwise
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+<rotate xmlns:android="http://schemas.android.com/apk/res/android"
+android:fromDegrees="0"
+android:toDegrees="360"
+android:duration="1000"/>
+</set>
+
+# fadein
+<?xml version="1.0" encoding="utf-8"?>
+<alpha xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fromAlpha="0"
+    android:toAlpha="1"
+    android:duration="1000"/>
+    
+# fadeout
+<?xml version="1.0" encoding="utf-8"?>
+<alpha xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fromAlpha="1"
+    android:toAlpha="0"
+    android:duration="1000"
+    />
+    
+# zoomin
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <scale xmlns:android="http://schemas.android.com/apk/res/android"
+        android:fromXScale="0.5dp"
+        android:toXScale="3.0dp"
+        android:fromYScale="0.5dp"
+        android:toYScale="3.0dp"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:duration="5000"/>
+</set>
+
+#zoomout
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <scale xmlns:android="http://schemas.android.com/apk/res/android"
+        android:fromXScale="3.0dp"
+        android:toXScale="0.5dp"
+        android:fromYScale="3.0dp"
+        android:toYScale="0.5dp"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:duration="5000"/>
+</set>
+
+#move
+<?xml version="1.0" encoding="utf-8"?>
+<translate xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fromXDelta="0%"
+    android:toXDelta="75%"
+    android:duration="1000"/>
+
+
