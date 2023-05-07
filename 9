@@ -1,0 +1,233 @@
+#xml file
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Enter name" />
+
+
+        <EditText
+            android:id="@+id/t1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv2"
+            android:text="Enter mobile number"/>
+
+        <EditText
+            android:id="@+id/t2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv3"
+            android:text="Enter blood group"/>
+
+        <EditText
+            android:id="@+id/t3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv4"
+            android:text="Enter DOB"/>
+
+        <EditText
+            android:id="@+id/t4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv5"
+            android:text="Enter Adhar number"/>
+
+        <EditText
+            android:id="@+id/t5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+                android:text="Submit"
+                android:onClick="show"
+            android:id="@+id/b"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv"/>
+</LinearLayout>
+
+
+#java file 
+
+package com.example.a72;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+
+    EditText e1,e2,e3,e4,e5;
+    Button b;
+    TextView t;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        e1=(EditText) findViewById(R.id.t1);
+        e2=(EditText) findViewById(R.id.t2);
+        e3=(EditText) findViewById(R.id.t3);
+        e4=(EditText) findViewById(R.id.t4);
+        e5=(EditText) findViewById(R.id.t5);
+        t=(TextView) findViewById(R.id.tv1);
+    }
+
+    public void show(View view)
+    {
+        String name=e1.getText().toString();
+        String mob=e2.getText().toString();
+        String blood=e3.getText().toString();
+        String dob=e4.getText().toString();
+        String adhar=e5.getText().toString();
+        StringBuilder str=new StringBuilder();
+        str.append("Name :"+name+"\n");
+        str.append("mobile :"+mob+"\n");
+        str.append("blood group :"+blood+"\n");
+        str.append("DOB :"+dob+"\n");
+        str.append("adhar :"+adhar+"\n");
+
+        Toast.makeText(getApplicationContext(),str,Toast.LENGTH_LONG).show();
+        t.setText("Successfully submitted");
+
+    }
+}
+
+#xml file
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Student Registration system login"
+        android:textSize="40dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter Username"
+        android:id="@+id/tv1"/>
+
+    <EditText
+        android:id="@+id/t1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter Password"
+        android:id="@+id/tv2"/>
+
+    <EditText
+        android:id="@+id/t2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:id="@+id/b"
+        android:onClick="show"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv3"/>
+
+</LinearLayout>
+
+#java file
+
+package com.example.a102;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+
+    EditText e1,e2;
+    Button b;
+    TextView t;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        e1=(EditText) findViewById(R.id.t1);
+        e2=(EditText) findViewById(R.id.t2);
+        t=(TextView) findViewById(R.id.tv3);
+    }
+    public void show(View v){
+        String user=e1.getText().toString();
+        String pass=e2.getText().toString();
+        if (user.equals("ruturaj")&pass.equals("123")){
+            t.setText("Login Successful");
+        }
+        else {t.setText("Login Unsuccessful");}
+    }
+}
+
+
+
+
