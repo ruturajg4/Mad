@@ -1,0 +1,136 @@
+xml file
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter num1"/>
+
+    <EditText
+        android:id="@+id/txtn1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:minHeight="48dp"
+        android:text="num"
+         />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter num2"/>
+
+
+    <EditText
+        android:id="@+id/txtn2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:minHeight="48dp"
+        android:text="num"/>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        android:id="@+id/add"
+        android:onClick="doAdd"/>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sub"
+        android:id="@+id/sub"
+        android:onClick="doSub"/>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mul"
+        android:id="@+id/mul"
+        android:onClick="doMul"/>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Div"
+        android:id="@+id/div"
+        android:onClick="doDiv"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/restv"/>
+
+    </LinearLayout>
+    
+    java file
+    
+    package com.example.a92;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.text.Editable;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+    EditText e1,e2;
+    Button add,sub,mul,div;float num1,num2,res;
+    TextView tvres;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        e1=(EditText)findViewById(R.id.txtn1);
+        e2=(EditText)findViewById(R.id.txtn2);
+        tvres=(TextView) findViewById(R.id.restv);
+        add=(Button) findViewById(R.id.add);
+        sub=(Button) findViewById(R.id.sub);
+        mul=(Button) findViewById(R.id.mul);
+        div=(Button) findViewById(R.id.div);
+    }
+    public void conv()
+    {
+        num1=Float.parseFloat(e1.getText().toString());
+        num2=Float.parseFloat(e2.getText().toString());
+    }
+    public void doAdd(View v){
+        conv();
+        res=num1+num2;
+        tvres.setText(Float.toString(res));
+    }
+    public void doSub(View v){
+        conv();
+        res=num1-num2;
+        tvres.setText(Float.toString(res));
+    }
+    public void doMul(View v){
+        conv();
+        res=num1*num2;
+        tvres.setText(Float.toString(res));
+    }
+    public void doDiv(View v){
+        conv();
+        res=num1/num2;
+        tvres.setText(Float.toString(res));
+    }
+}
+    
+    
