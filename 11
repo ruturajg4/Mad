@@ -1,0 +1,105 @@
+# Xml file
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Single Radio Buttons"
+        android:layout_gravity="center"/>
+
+    <RadioButton
+        android:id="@+id/r1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Radio Button 1" />
+
+    <RadioButton
+        android:id="@+id/r2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Radio Button 2" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="____________________________________________________________" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Radio button inside RadioGroup"
+        android:layout_gravity="center"/>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rg1">
+
+        <RadioButton
+            android:id="@+id/r3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  Male"
+            android:checked="false" />
+
+        <RadioButton
+            android:id="@+id/r4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="   Female"
+            android:checked="false" />
+    </RadioGroup>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Selected"
+        android:id="@+id/b1"
+        android:onClick="show" />
+
+
+</LinearLayout>
+
+#java file
+package com.example.a12;
+import android.annotation.SuppressLint;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+    Button b;
+    RadioButton rb;
+    RadioGroup rg;
+    @SuppressLint("MissingInflatedId")
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        rg=(RadioGroup)findViewById(R.id.rg1);
+    }
+    public void show(View v) {
+        int selectedId = rg.getCheckedRadioButtonId();
+        rb = (RadioButton) findViewById(selectedId);
+        if (selectedId == -1) {
+            Toast.makeText(MainActivity.this, "Nothing selected", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(MainActivity.this, rb.getText(), Toast.LENGTH_SHORT).show();
+        }
+    }
+}
