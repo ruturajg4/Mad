@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
 }
 
-string.xml file
+#string.xml file
 
 <resources>
     <string name="app_name">14.1</string>
