@@ -1,0 +1,65 @@
+# xml file
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/t1"
+        android:text="hello" />
+
+</LinearLayout>
+
+#java file
+
+package com.example.a222;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity implements SensorEventListener {
+    SensorManager mgr;
+    //  Sensor s;
+    TextView text;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        mgr=(SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        text=(TextView) findViewById(R.id.t1);
+        List<Sensor> sensorList=mgr.getSensorList(Sensor.TYPE_ALL);
+        StringBuilder str=new StringBuilder();
+        for (Sensor s:sensorList){
+            str.append(s.getName()+"\n");
+        }
+        text.setVisibility(View.VISIBLE);
+        text.setText(str);
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int i) {
+
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent sensorEvent){
+    }
+}
+
