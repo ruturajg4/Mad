@@ -1,0 +1,87 @@
+#xml file
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="pizza"
+        android:id="@+id/c1"
+        android:layout_gravity="center"/>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="coffee"
+        android:id="@+id/c2"
+        android:layout_gravity="center"/>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="burger"
+        android:id="@+id/c3"
+        android:layout_gravity="center"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/b1"
+        android:layout_gravity="center"
+        android:text="ORDER"
+        android:onClick="show"/>
+
+</LinearLayout>
+
+#java file
+package com.example.a152;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+    CheckBox chp,chc,chb;
+    Button b;
+    int price=0;
+    @SuppressLint("MissingInflatedId")
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        chp=(CheckBox)findViewById(R.id.c1);
+        chc=(CheckBox)findViewById(R.id.c2);
+        chb=(CheckBox)findViewById(R.id.c3);
+    }
+    public void show(View view)
+    {
+        StringBuilder str=new StringBuilder();
+        if(chp.isChecked()==true)
+        {
+            price=price+100;
+            str=str.append(chp.getText().toString()+"100rs\n");
+        }
+        if(chc.isChecked()==true)
+        {
+            price=price+50;
+            str=str.append(chc.getText().toString()+"50rs\n");
+        }
+        if(chb.isChecked()==true)
+        {
+            price=price+120;
+            str=str.append(chb.getText().toString()+"120rs\n");
+        }
+        Toast.makeText(getApplicationContext(),str+"Total"+price,Toast.LENGTH_SHORT).show();
+    }
+}
